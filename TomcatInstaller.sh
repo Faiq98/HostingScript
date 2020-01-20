@@ -60,7 +60,7 @@ END
 
 sudo systemctl daemon-reload
 sudo systemctl start tomcat
-sudo systemctl status tomcat
+#sudo systemctl status tomcat
 
 #adjust firewall
 sudo ufw allow 8080
