@@ -70,7 +70,7 @@ sudo systemctl enable tomcat
 clear
 echo ...:: Tomcat ::... 
 read -p 'Username: ' tomcatUsername
-read -s -p 'Password: ' tomcatPassword
+read -p 'Password: ' tomcatPassword
 echo ..................
 sed -i '/<\/tomcat-users>/i <user username="'$tomcatUsername'" password="'$tomcatPassword'" roles="manager-gui,admin-gui"\/>' /opt/tomcat/conf/tomcat-users.xml
 sed -i 's/<Valve/<!--<Valve/g' /opt/tomcat/webapps/manager/META-INF/context.xml
