@@ -69,8 +69,8 @@ sudo systemctl enable tomcat
 #access manager-gui and admin-gui
 clear
 echo ...:: Tomcat ::... 
-read -p 'Username: 'tomcatUsername
-read -sp 'Password: 'tomcatPassword
+read -p 'Username: ' tomcatUsername
+read -s -p 'Password: ' tomcatPassword
 echo ..................
 sed -i '/<\/tomcat-users>/i <user username="'$tomcatUsername'" password="'$tomcatPassword'" roles="manager-gui,admin-gui"\/>' /opt/tomcat/conf/tomcat-users.xml
 sed -i 's/<Valve/<!--<Valve/g' /opt/tomcat/webapps/manager/META-INF/context.xml
@@ -92,7 +92,7 @@ sudo mysql_secure_installation
 clear
 echo ...:: MySQL ::...
 echo Username : root
-read -p 'Password : 'mysqlPassword
+read -p 'Password : ' mysqlPassword
 echo .................
 CMD1="ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '$mysqlPassword';"
 CMD2="FLUSH PRIVILEGES;"
@@ -127,7 +127,7 @@ END
 
 clear
 echo ...:: phpMyadmin page ::...
-read -p 'Username: 'phpmyadminUsername
+read -p 'Username: ' phpmyadminUsername
 sudo htpasswd -c /etc/phpmyadmin/.htpasswd $phpmyadminUsername
 sed -i '/Listen 80/a Listen 99' /etc/apache2/ports.conf
 
