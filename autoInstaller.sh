@@ -67,12 +67,12 @@ sudo ufw allow 8080
 sudo systemctl enable tomcat
 
 #access manager-gui and admin-gui
+clear
 echo ...:: Tomcat ::... 
-echo Enter Username :
-read tomcatUsername
-echo Enter Password :
-read tomcatPassword
-sed -i '/<\/tomcat-users>/i <user username="$tomcatUsername" password="$tomcatPassword" roles="manager-gui,admin-gui"\/>' /opt/tomcat/conf/tomcat-users.xml
+read -p 'Username: 'tomcatUsername
+read -sp 'Password: 'tomcatPassword
+echo ..................
+sed -i '/<\/tomcat-users>/i <user username="'$tomcatUsername'" password="'$tomcatPassword'" roles="manager-gui,admin-gui"\/>' /opt/tomcat/conf/tomcat-users.xml
 sed -i 's/<Valve/<!--<Valve/g' /opt/tomcat/webapps/manager/META-INF/context.xml
 sed -i 's/<Manager/--><Manager/g' /opt/tomcat/webapps/manager/META-INF/context.xml
 sed -i 's/<Valve/<!--<Valve/g' /opt/tomcat/webapps/host-manager/META-INF/context.xml
@@ -89,11 +89,11 @@ sudo apt install mysql-server
 sudo mysql_secure_installation
 
 #Adjusting User Auth & Privilagr
-
+clear
 echo ...:: MySQL ::...
 echo Username : root
-echo Enter Password :
-read mysqlPassword 
+read -p 'Password : 'mysqlPassword
+echo .................
 CMD1="ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '$mysqlPassword';"
 CMD2="FLUSH PRIVILEGES;"
 CMD3="exit"
@@ -125,9 +125,9 @@ AuthUserFile /etc/phpmyadmin/.htpasswd
 Require valid-user
 END
 
-echo ...:: phpMyadmin ::...
-echo Enter Username :
-read phpmyadminUsername
+clear
+echo ...:: phpMyadmin page ::...
+read -p 'Username: 'phpmyadminUsername
 sudo htpasswd -c /etc/phpmyadmin/.htpasswd $phpmyadminUsername
 sed -i '/Listen 80/a Listen 99' /etc/apache2/ports.conf
 
