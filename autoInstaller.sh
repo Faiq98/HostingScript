@@ -67,7 +67,12 @@ sudo ufw allow 8080
 sudo systemctl enable tomcat
 
 #access manager-gui and admin-gui
-sed -i 's|\(<\/tomcat-users>\)|<user username="admin" password="password" roles="manager-gui,admin-gui"\/>\n<\/tomcat-users>|g' /opt/tomcat/conf/tomcat-users.xml
+echo ...:: Tomcat ::... 
+echo Enter Username :
+read tomcatUsername
+echo Enter Password :
+read tomcatPassword
+sed -i '/<\/tomcat-users>/i <user username="$tomcatUsername" password="$tomcatPassword" roles="manager-gui,admin-gui"\/>' /opt/tomcat/conf/tomcat-users.xml
 sed -i 's/<Valve/<!--<Valve/g' /opt/tomcat/webapps/manager/META-INF/context.xml
 sed -i 's/<Manager/--><Manager/g' /opt/tomcat/webapps/manager/META-INF/context.xml
 sed -i 's/<Valve/<!--<Valve/g' /opt/tomcat/webapps/host-manager/META-INF/context.xml
@@ -85,13 +90,17 @@ sudo mysql_secure_installation
 
 #Adjusting User Auth & Privilagr
 
-CMD1="ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'password';"
+echo ...:: MySQL ::...
+echo Username : root
+echo Enter Password :
+read mysqlPassword 
+CMD1="ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '$mysqlPassword';"
 CMD2="FLUSH PRIVILEGES;"
 CMD3="exit"
 sudo mysql -Bse "$CMD1;$CMD2;$CMD3"
 
 #Check MySQL status
-systemctl status mysql.service
+#systemctl status mysql.service
 
 #update package
 sudo apt update
@@ -106,7 +115,6 @@ sudo phpenmod mbstring
 sudo systemctl restart apache2
 
 #Securing phpmyadmin
-sudo nano /etc/apache2/conf-available/phpmyadmin.conf
 sed -i '/index.php/a AllowOverride All' /etc/apache2/conf-available/phpmyadmin.conf
 sudo systemctl restart apache2
 
@@ -117,7 +125,10 @@ AuthUserFile /etc/phpmyadmin/.htpasswd
 Require valid-user
 END
 
-sudo htpasswd -c /etc/phpmyadmin/.htpasswd username
+echo ...:: phpMyadmin ::...
+echo Enter Username :
+read phpmyadminUsername
+sudo htpasswd -c /etc/phpmyadmin/.htpasswd $phpmyadminUsername
 sed -i '/Listen 80/a Listen 99' /etc/apache2/ports.conf
 
 #setup virtual host
@@ -127,3 +138,5 @@ a2enmod proxy_http
 systemctl restart apache2
 sed -i '/80>/a ProxyPreserveHost On\nProxyPass \/ http:\/\/0.0.0.0:8080\/\nProxyPassReverse \/ http:\/\/0.0.0.0:8080\/\nServerName localhost' /etc/apache2/sites-enabled/000-default.conf
 service apache2 restart
+
+echo Java Hosting Setup Done....
