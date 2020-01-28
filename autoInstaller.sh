@@ -145,6 +145,7 @@ echo ...:: phpMyadmin page ::...
 read -p 'Username: ' phpmyadminUsername
 sudo htpasswd -c /etc/phpmyadmin/.htpasswd $phpmyadminUsername
 sed -i '/Listen 80/a Listen 99' /etc/apache2/ports.conf
+sudo systemctl restart apache2
 
 #setup virtual host
 sudo apt-get install apache2
@@ -162,9 +163,8 @@ echo Java Hosting Setup Done....
 clear
 
 echo "========================================"| lolcat  
-echo "SCRIPT PREMIUM Modified by DikaNET"| lolcat 
+echo "Java Hosting Auto Installer"| lolcat 
 echo "----------------------------------------"| lolcat
-echo ""  | tee -a log-install.txt
 echo "---------- TOMCAT ----------------------"
 echo "Tomcat Manager   : http://$myip/manager/html"| lolcat
 echo "Username   : $tomcatUsername"| lolcat
@@ -177,6 +177,6 @@ echo "----------------------------------------"
 echo "-------- Phpmyadmin Page Auth ----------"
 echo "Username   : $phpmyadminUsername"| lolcat
 echo "----------------------------------------"
-echo "========================================"  | tee -a log-install.txt
+echo "========================================"
 echo "      Reboot VPS  !" | lolcat
-echo "========================================"  | tee -a log-install.txt
+echo "========================================"
