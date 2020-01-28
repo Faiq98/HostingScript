@@ -10,16 +10,18 @@ if [ $USER != 'root' ]; then
 fi
 echo "
 Java Hosting Auto Installer..."
+sleep 5
 clear
 
 echo "Start Auto Installer...."
+sleep 5
 clear
 
 #update package
 sudo apt update
 
 #install JDK package
-sudo apt install default-jdk
+sudo apt install default-jdk -y
 
 #create tomcat group
 sudo groupadd tomcat
@@ -83,10 +85,12 @@ sudo systemctl enable tomcat
 
 #access manager-gui and admin-gui
 clear
-echo ...:: Tomcat ::... 
+echo ...:: Tomcat Manager Security ::... 
 read -p 'Username: ' tomcatUsername
 read -p 'Password: ' tomcatPassword
-echo ..................
+echo ...................................
+sleep 5
+clear
 sed -i '/<\/tomcat-users>/i <user username="'$tomcatUsername'" password="'$tomcatPassword'" roles="manager-gui,admin-gui"\/>' /opt/tomcat/conf/tomcat-users.xml
 sed -i 's/<Valve/<!--<Valve/g' /opt/tomcat/webapps/manager/META-INF/context.xml
 sed -i 's/<Manager/--><Manager/g' /opt/tomcat/webapps/manager/META-INF/context.xml
@@ -109,6 +113,8 @@ echo ...:: MySQL ::...
 echo Username : root
 read -p 'Password : ' mysqlPassword
 echo .................
+sleep 5
+clear
 CMD1="ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '$mysqlPassword';"
 CMD2="FLUSH PRIVILEGES;"
 CMD3="exit"
@@ -141,7 +147,7 @@ Require valid-user
 END
 
 clear
-echo ...:: phpMyadmin page ::...
+echo ...:: PhpMyadmin Security ::...
 read -p 'Username: ' phpmyadminUsername
 sudo htpasswd -c /etc/phpmyadmin/.htpasswd $phpmyadminUsername
 sed -i '/Listen 80/a Listen 99' /etc/apache2/ports.conf
@@ -160,6 +166,7 @@ apt-get install ruby -y
 gem install lolcat
 
 echo Java Hosting Setup Done....
+sleep 5
 clear
 
 echo "========================================"| lolcat  
@@ -171,12 +178,10 @@ echo "Username   : $tomcatUsername"| lolcat
 echo "Password   : $tomcatPassword"| lolcat
 echo "----------------------------------------"
 echo "---------- Phpmyadmin ------------------"
+echo "PhpMyadmin : http://$myip:99/phpmyadmin"| lolcat
 echo "Username   : root"| lolcat
 echo "Password   : $mysqlPassword"| lolcat
 echo "----------------------------------------"
-echo "-------- Phpmyadmin Page Auth ----------"
-echo "Username   : $phpmyadminUsername"| lolcat
-echo "----------------------------------------"
 echo "========================================"
-echo "      Reboot VPS  !" | lolcat
+echo "      Please Reboot VPS  !" | lolcat
 echo "========================================"
