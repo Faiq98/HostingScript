@@ -1,5 +1,20 @@
 #!/bin/sh
 
+myip=`ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0' | head -n1`;
+
+echo
+
+if [ $USER != 'root' ]; then
+	echo "Sorry, for run the script please using root user"
+	exit
+fi
+echo "
+Java Hosting Auto Installer..."
+clear
+
+echo "Start Auto Installer...."
+clear
+
 #update package
 sudo apt update
 
@@ -139,4 +154,29 @@ systemctl restart apache2
 sed -i '/80>/a ProxyPreserveHost On\nProxyPass \/ http:\/\/0.0.0.0:8080\/\nProxyPassReverse \/ http:\/\/0.0.0.0:8080\/\nServerName localhost' /etc/apache2/sites-enabled/000-default.conf
 service apache2 restart
 
+#text pelangi
+apt-get install ruby -y
+gem install lolcat
+
 echo Java Hosting Setup Done....
+clear
+
+echo "========================================"| lolcat  
+echo "SCRIPT PREMIUM Modified by DikaNET"| lolcat 
+echo "----------------------------------------"| lolcat
+echo ""  | tee -a log-install.txt
+echo "---------- TOMCAT ----------------------"
+echo "Tomcat Manager   : http://$myip/manager/html"| lolcat
+echo "Username   : $tomcatUsername"| lolcat
+echo "Password   : $tomcatPassword"| lolcat
+echo "----------------------------------------"
+echo "---------- Phpmyadmin ------------------"
+echo "Username   : root"| lolcat
+echo "Password   : $mysqlPassword"| lolcat
+echo "----------------------------------------"
+echo "-------- Phpmyadmin Page Auth ----------"
+echo "Username   : $phpmyadminUsername"| lolcat
+echo "----------------------------------------"
+echo "========================================"  | tee -a log-install.txt
+echo "      Reboot VPS  !" | lolcat
+echo "========================================"  | tee -a log-install.txt
