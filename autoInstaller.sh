@@ -10,11 +10,11 @@ if [ $USER != 'root' ]; then
 fi
 echo "
 Java Hosting Auto Installer..."
-sleep 5
+sleep 3
 clear
 
 echo "Start Auto Installer...."
-sleep 5
+sleep 3
 clear
 
 #update package
@@ -113,7 +113,7 @@ echo ...:: MySQL ::...
 echo Username : root
 read -p 'Password : ' mysqlPassword
 echo .................
-sleep 5
+sleep 3
 clear
 CMD1="ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '$mysqlPassword';"
 CMD2="FLUSH PRIVILEGES;"
@@ -165,20 +165,30 @@ service apache2 restart
 apt-get install ruby -y
 gem install lolcat
 
+#setup ssl
+sudo apt-get update
+sudo add-apt-repository ppa:certbot/certbot
+sudo apt-get update
+sudo apt-get install python-certbot-apache
+sudo apachectl stop
+clear
+read -p 'Domain : ' domain
+letsencrypt --authenticator standalone --installer apache -d $domain
+sudo service apache2 start
 echo Java Hosting Setup Done....
-sleep 5
+sleep 3
 clear
 
 echo "========================================"| lolcat  
 echo "Java Hosting Auto Installer"| lolcat 
 echo "----------------------------------------"| lolcat
 echo "---------- TOMCAT ----------------------"
-echo "Tomcat Manager   : http://$myip/manager/html"| lolcat
+echo "Tomcat Manager   : https://$myip/manager/html"| lolcat
 echo "Username   : $tomcatUsername"| lolcat
 echo "Password   : $tomcatPassword"| lolcat
 echo "----------------------------------------"
 echo "---------- Phpmyadmin ------------------"
-echo "PhpMyadmin : http://$myip:99/phpmyadmin"| lolcat
+echo "PhpMyadmin : https://$myip:99/phpmyadmin"| lolcat
 echo "Username   : root"| lolcat
 echo "Password   : $mysqlPassword"| lolcat
 echo "----------------------------------------"
