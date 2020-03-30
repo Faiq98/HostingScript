@@ -185,7 +185,7 @@ echo "========================================"| lolcat
 echo "Java Hosting Auto Installer"| lolcat 
 echo "----------------------------------------"| lolcat
 echo "---------- TOMCAT ----------------------"
-echo "Tomcat Manager   : https://yourip/manager/html"| lolcat
+echo "Tomcat Manager   : http://yourip/manager/html"| lolcat
 echo "Username   : $tomcatUsername"| lolcat
 echo "Password   : $tomcatPassword"| lolcat
 echo "----------------------------------------"
