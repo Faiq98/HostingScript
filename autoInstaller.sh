@@ -185,12 +185,12 @@ echo "========================================"| lolcat
 echo "Java Hosting Auto Installer"| lolcat 
 echo "----------------------------------------"| lolcat
 echo "---------- TOMCAT ----------------------"
-echo "Tomcat Manager   : https://$domain/manager/html"| lolcat
+echo "Tomcat Manager   : https://yourip/manager/html"| lolcat
 echo "Username   : $tomcatUsername"| lolcat
 echo "Password   : $tomcatPassword"| lolcat
 echo "----------------------------------------"
 echo "---------- Phpmyadmin ------------------"
-echo "PhpMyadmin : http://$domain:99/phpmyadmin"| lolcat
+echo "PhpMyadmin : http://yourip:99/phpmyadmin"| lolcat
 echo "Username   : root"| lolcat
 echo "Password   : $mysqlPassword"| lolcat
 echo "----------------------------------------"
