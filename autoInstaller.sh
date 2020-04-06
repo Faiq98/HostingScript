@@ -33,13 +33,12 @@ sudo useradd -s /bin/false -g tomcat -d /opt/tomcat tomcat
 cd /tmp
 
 #download tomcat
-# curl -O https://downloads.apache.org/tomcat/tomcat-9/v9.0.31/bin/apache-tomcat-9.0.31.tar.gz
-curl -O https://downloads.apache.org/tomcat/tomcat-10/v10.0.0-M3/bin/apache-tomcat-10.0.0-M3.tar.gz
+curl -O https://downloads.apache.org/tomcat/tomcat-9/v9.0.33/bin/apache-tomcat-9.0.33.tar.gz
+
 
 #create tomcat directory and extract the archive
 sudo mkdir /opt/tomcat
-# sudo tar xzvf apache-tomcat-9*tar.gz -C /opt/tomcat --strip-components=1
-sudo tar xzvf apache-tomcat-10*tar.gz -C /opt/tomcat --strip-components=1
+sudo tar xzvf apache-tomcat-9*tar.gz -C /opt/tomcat --strip-components=1
 
 #update permission
 cd /opt/tomcat
