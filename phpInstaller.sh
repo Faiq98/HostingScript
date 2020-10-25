@@ -110,6 +110,7 @@ sudo systemctl restart apache2
 
 #install phpMyAdmin
 sudo apt update
+clear
 
 echo ....:::  ! Important  :::....
 echo Before continue please make sure you understand the step.
