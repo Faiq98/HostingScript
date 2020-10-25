@@ -148,7 +148,8 @@ gem install lolcat
 
 #setup ssl 
 # tutorial by https://bmtechtips.com/install-free-ssl-certificate-digitalocean-apache2.htm
-if [[$hasDomain != 'n']] then
+if test $hasDomain = 'y' 
+then
 sudo apt-get update
 sudo add-apt-repository ppa:certbot/certbot
 sudo apt-get update
