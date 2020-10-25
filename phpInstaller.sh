@@ -170,7 +170,10 @@ echo "========================================"| lolcat
 echo "Php Hosting Auto Installer"| lolcat 
 echo "----------------------------------------"| lolcat
 echo "---------- Instruction -----------------"
-echo "Place your file in /var/www/$fileName" | lolcat
+echo "Place your index.php file in /var/www/$fileName" | lolcat
+echo
+echo "To change document root path" | lolcat
+echo "sudo nano /etc/apache2/sites-available/$fileName.conf" | lolcat
 echo "----------------------------------------"
 if test $hasDomain = 'y'
 then
