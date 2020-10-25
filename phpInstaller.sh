@@ -117,7 +117,8 @@ echo Before continue please make sure you understand the step.
 echo 1. Choose apache2 as web server
 echo 2. Use SPACE button to select.
 echo 3. Select YES for configure db with dbconfig-common
-sleep 15
+read -rsn1 -p"Press any key to continue";
+echo
 sudo apt install phpmyadmin php-mbstring php-gettext -y
 
 #enable mbstring
