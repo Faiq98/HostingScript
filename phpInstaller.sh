@@ -117,7 +117,7 @@ echo Before continue please make sure you understand the step.
 echo 1. Choose apache2 as web server
 echo 2. Use SPACE button to select.
 echo 3. Select YES for configure db with dbconfig-common
-read -n 1 -r -s -p "Press any key to continue..."
+sleep 15
 sudo apt install phpmyadmin php-mbstring php-gettext -y
 
 #enable mbstring
@@ -175,13 +175,13 @@ if test $hasDomain = 'y'
 then
 echo "---------- Phpmyadmin ------------------"
 echo "PhpMyadmin : http://$domainName/phpmyadmin"| lolcat
-echo "Username   : root"| lolcat
+echo "Username   : $phpmyadminUsername"| lolcat
 echo "Password   : $mysqlPassword"| lolcat
 echo "----------------------------------------"
 else
 echo "---------- Phpmyadmin ------------------"
 echo "PhpMyadmin : http://$myip/phpmyadmin"| lolcat
-echo "Username   : root"| lolcat
+echo "Username   : $phpmyadminUsername"| lolcat
 echo "Password   : $mysqlPassword"| lolcat
 echo "----------------------------------------"
 fi
