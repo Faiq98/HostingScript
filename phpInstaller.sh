@@ -74,7 +74,7 @@ sudo chmod -R 777 /var/www/$fileName
 
 #config own domain directory
 read -p 'Do you has your own domain ? (y/n)' hasDomain
-if [$hasDomain != 'n'] then
+if [[$hasDomain != 'n']] then
 read -p 'Domain name: ' domainName
 cat > /etc/apache2/sites-available/$fileName.conf <<-END
 <VirtualHost *:80>
@@ -147,7 +147,7 @@ gem install lolcat
 
 #setup ssl 
 # tutorial by https://bmtechtips.com/install-free-ssl-certificate-digitalocean-apache2.htm
-if [$hasDomain != 'n'] then
+if [[$hasDomain != 'n']] then
 sudo apt-get update
 sudo add-apt-repository ppa:certbot/certbot
 sudo apt-get update
@@ -168,7 +168,7 @@ echo "----------------------------------------"| lolcat
 echo "---------- Instruction ----------------------"
 echo "Place your file in /var/www/$fileName" | lolcat
 echo "----------------------------------------"
-if [$hasDomain != 'n'] then
+if [[$hasDomain != 'n']] then
 echo "---------- Phpmyadmin ------------------"
 echo "PhpMyadmin : http://$domainName/phpmyadmin"| lolcat
 echo "Username   : root"| lolcat
