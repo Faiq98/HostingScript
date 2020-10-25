@@ -117,7 +117,7 @@ echo Before continue please make sure you understand the step.
 echo 1. Choose apache2 as web server
 echo 2. Use SPACE button to select.
 echo 3. Select YES for configure db with dbconfig-common
-read -p 'Please press ENTER to continue...'
+read -n 1 -r -s -p "Press any key to continue..."
 sudo apt install phpmyadmin php-mbstring php-gettext -y
 
 #enable mbstring
