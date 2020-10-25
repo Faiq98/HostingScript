@@ -171,7 +171,8 @@ echo "----------------------------------------"| lolcat
 echo "---------- Instruction ----------------------"
 echo "Place your file in /var/www/$fileName" | lolcat
 echo "----------------------------------------"
-if [[$hasDomain != 'n']] then
+if test $hasDomain = 'y'
+then
 echo "---------- Phpmyadmin ------------------"
 echo "PhpMyadmin : http://$domainName/phpmyadmin"| lolcat
 echo "Username   : root"| lolcat
