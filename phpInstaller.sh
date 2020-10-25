@@ -168,7 +168,7 @@ clear
 echo "========================================"| lolcat  
 echo "Php Hosting Auto Installer"| lolcat 
 echo "----------------------------------------"| lolcat
-echo "---------- Instruction ----------------------"
+echo "---------- Instruction -----------------"
 echo "Place your file in /var/www/$fileName" | lolcat
 echo "----------------------------------------"
 if test $hasDomain = 'y'
