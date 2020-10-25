@@ -112,12 +112,12 @@ sudo systemctl restart apache2
 sudo apt update
 clear
 
-echo ....:::  ! Important  :::....
-echo Before continue please make sure you understand the step.
-echo 1. Choose apache2 as web server
-echo 2. Use SPACE button to select.
-echo 3. Select YES for configure db with dbconfig-common
-read -rsn1 -p 'Press any key to continue' key
+echo "....:::  ! Important  :::...."
+echo "Before continue please make sure you understand the step."
+echo "1. Choose apache2 as web server"
+echo "2. Use SPACE button to select."
+echo "3. Select YES for configure db with dbconfig-common"
+read -p 'Press ENTER tu continue...'
 sudo apt install phpmyadmin php-mbstring php-gettext -y
 
 #enable mbstring
