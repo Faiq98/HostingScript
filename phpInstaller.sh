@@ -73,8 +73,8 @@ sudo chown -R $USER:$USER /var/www/$fileName
 sudo chmod -R 777 /var/www/$fileName
 
 #config own domain directory
-read -p 'Do you has your own domain ? (y/n)' hasDomain
-if [[$hasDomain != 'n']] then
+read -p 'Do you has your own domain ? (y/n): ' hasDomain
+if [['$hasDomain' != 'n']] then
 read -p 'Domain name: ' domainName
 cat > /etc/apache2/sites-available/$fileName.conf <<-END
 <VirtualHost *:80>
