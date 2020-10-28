@@ -77,12 +77,13 @@ read -p 'Do you has your own domain ? (y/n): ' hasDomain
 if test $hasDomain = 'y' 
 then
 read -p 'Domain name: ' domainName
+read -p 'Index.php directory: $fileName/' dir
 cat > /etc/apache2/sites-available/$fileName.conf <<-END
 <VirtualHost *:80>
     ServerAdmin webmaster@localhost
     ServerName $domainName
     ServerAlias www.$domainName
-    DocumentRoot /var/www/$fileName
+    DocumentRoot /var/www/$fileName/$dir
     ErrorLog \${APACHE_LOG_DIR}/error.log
     CustomLog \${APACHE_LOG_DIR}/access.log combined
 </VirtualHost>
@@ -92,7 +93,7 @@ cat > /etc/apache2/sites-available/$fileName.conf <<-END
 <VirtualHost *:80>
     ServerAdmin webmaster@localhost
     ServerName $myip
-    DocumentRoot /var/www/$fileName
+    DocumentRoot /var/www/$fileName/$dir
     ErrorLog \${APACHE_LOG_DIR}/error.log
     CustomLog \${APACHE_LOG_DIR}/access.log combined
 </VirtualHost>
