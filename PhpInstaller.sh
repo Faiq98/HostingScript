@@ -222,7 +222,7 @@ After=network.target
 Environment=NODE_PORT=8080
 Type=simple
 User=root
-ExecStart=/usr/bin/nodejs /root/NodeWebhooks/webhook.js
+ExecStart=/usr/bin/nodejs /root/NodeWebhook/webhook.js
 Restart=on-failure
 
 [Install]
