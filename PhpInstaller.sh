@@ -184,6 +184,10 @@ if [ $webhook = 'y' ]; then
 wget https://raw.githubusercontent.com/Faiq98/HostingScript/master/env/webhook.sh&&chmod +x webhook.sh&&./webhook.sh
 fi
 
+#create ssh keygen
+cd .ssh
+ssh-keygen
+
 echo Php Hosting Setup Done....
 sleep 2
 clear
@@ -212,6 +216,11 @@ echo "Username   : $phpmyadminUsername"| lolcat
 echo "Password   : $mysqlPassword"| lolcat
 echo "----------------------------------------"
 fi
+echo "---------- Webhook ------------------"
+echo "PhpMyadmin : http://$myip/phpmyadmin"| lolcat
+echo "Secret   : $secret"| lolcat
+echo "Deploy Key   : $mysqlPassword"| lolcat
+echo "----------------------------------------"
 echo "========================================"
 echo "      Please Reboot VPS  !" | lolcat
 echo "========================================"
