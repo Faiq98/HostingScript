@@ -219,7 +219,10 @@ fi
 echo "---------- Webhook ------------------"
 echo "PhpMyadmin : http://$myip/phpmyadmin"| lolcat
 echo "Secret   : $secret"| lolcat
-echo "Deploy Key   : $mysqlPassword"| lolcat
+echo "Deploy Key   : "| lolcat
+echo "----------------------------------------"
+cat .ssh/id_rsa.pub
+echo "----------------------------------------"
 echo "----------------------------------------"
 echo "========================================"
 echo "      Please Reboot VPS  !" | lolcat
