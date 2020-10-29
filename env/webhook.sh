@@ -8,7 +8,7 @@ sudo mkdir NodeWebhook
 read -p 'Secret: ' secret
 read -p 'Repo dir: ' repo
 
-cat > /NodeWebhook/webhook.js <<-END
+cat > NodeWebhook/webhook.js <<-END
 const secret = "$secret";
 const repo = "$repo";
 
