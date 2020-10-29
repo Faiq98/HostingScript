@@ -181,7 +181,59 @@ sudo service apache2 start
 clear
 read -p "Want to set Github Webhooks ? (y/n): " webhook
 if [ $webhook = 'y' ]; then
-wget https://raw.githubusercontent.com/Faiq98/HostingScript/master/env/webhook.sh&&chmod +x webhook.sh&&./webhook.sh
+#create dir
+cd
+sudo mkdir NodeWebhook
+
+#create webhook script
+read -p 'Secret: ' secret
+
+cat > NodeWebhook/webhook.js <<-END
+const secret = "$secret";
+const repo = "/var/www/$fileName/$dir";
+
+const http = require('http');
+const crypto = require('crypto');
+const exec = require('child_process').exec;
+
+http.createServer(function (req, res) {
+    req.on('data', function(chunk) {
+        let sig = "sha1=" + crypto.createHmac('sha1', secret).update(chunk.toString()).digest('hex');
+
+        if (req.headers['x-hub-signature'] == sig) {
+            exec('cd ' + repo + ' && git pull --no-edit');
+        }
+    });
+
+    res.end();
+}).listen(8080);
+END
+
+#allow traffic on port 8080
+sudo ufw allow 8080/tcp
+
+#install webhook as systemd service
+cat > /etc/systemd/system/webhook.service <<-END
+[Unit]
+Description=Github webhook
+After=network.target
+
+[Service]
+Environment=NODE_PORT=8080
+Type=simple
+User=root
+ExecStart=/usr/bin/nodejs /root/NodeWebhooks/webhook.js
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
+END
+
+#enable the service 
+sudo systemctl enable webhook.service
+
+#start service
+sudo systemctl start webhook
 fi
 
 #create ssh keygen
@@ -221,6 +273,7 @@ echo "PhpMyadmin : http://$myip/phpmyadmin"| lolcat
 echo "Secret   : $secret"| lolcat
 echo "Deploy Key   : "| lolcat
 echo "----------------------------------------"
+cd
 cat .ssh/id_rsa.pub
 echo "----------------------------------------"
 echo "----------------------------------------"
