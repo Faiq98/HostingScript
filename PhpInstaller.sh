@@ -184,6 +184,7 @@ read -p "Want to set Github Webhooks ? (y/n): " webhook
 if [ $webhook = 'y' ]; then
 #create dir
 cd
+sudo apt-get install nodejs
 sudo mkdir NodeWebhook
 
 #create webhook script
