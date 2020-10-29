@@ -41,8 +41,9 @@ sleep 2
 clear
 CMD1="ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '$mysqlPassword';"
 CMD2="FLUSH PRIVILEGES;"
-CMD3="exit"
-sudo mysql -Bse "$CMD1;$CMD2;$CMD3"
+CMD3="SET GLOBAL sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''));"
+CMD4="exit;"
+sudo mysql -Bse "$CMD1;$CMD2;$CMD3;$CMD4"
 
 #Check MySQL status
 #systemctl status mysql.service
@@ -55,6 +56,7 @@ sudo apt install php libapache2-mod-php php-mysql -y
 
 #change index.php location
 sed -i 's/\<index.php\>//g;s/index.html/index.php index.html/g' /etc/apache2/mods-enabled/dir.conf
+
 sudo systemctl restart apache2
 
 #install php-cli
@@ -77,7 +79,7 @@ read -p 'Do you has your own domain ? (y/n): ' hasDomain
 if test $hasDomain = 'y' 
 then
 read -p 'Domain name: ' domainName
-read -p 'Index.php directory: $fileName/' dir
+read -p 'Index.php directory: \$fileName/' dir
 cat > /etc/apache2/sites-available/$fileName.conf <<-END
 <VirtualHost *:80>
     ServerAdmin webmaster@localhost
@@ -89,6 +91,7 @@ cat > /etc/apache2/sites-available/$fileName.conf <<-END
 </VirtualHost>
 END
 else
+read -p 'Index.php directory: \$fileName/' dir
 cat > /etc/apache2/sites-available/$fileName.conf <<-END
 <VirtualHost *:80>
     ServerAdmin webmaster@localhost
@@ -130,6 +133,12 @@ sudo systemctl restart apache2
 
 #Securing phpmyadmin
 sed -i '/index.php/a AllowOverride All' /etc/apache2/conf-available/phpmyadmin.conf
+
+#find and replace between 2 patern
+sed -i '/<Directory \/var\/www\/>/,/<\/Directory>/ s/AllowOverride None/AllowOverride All/' /etc/apache2/apache2.conf
+
+#enable module rewrite & restart
+sudo a2enmod rewrite
 sudo systemctl restart apache2
 
 cat > /usr/share/phpmyadmin/.htaccess <<-END
