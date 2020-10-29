@@ -6,11 +6,10 @@ sudo mkdir NodeWebhook
 
 #create webhook script
 read -p 'Secret: ' secret
-read -p 'Repo dir: ' repo
 
 cat > NodeWebhook/webhook.js <<-END
 const secret = "$secret";
-const repo = "$repo";
+const repo = "/var/www/$fileName/$dir";
 
 const http = require('http');
 const crypto = require('crypto');

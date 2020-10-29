@@ -75,7 +75,7 @@ sudo chown -R $USER:$USER /var/www/$fileName
 sudo chmod -R 777 /var/www/$fileName
 
 #create alias to your file dir in 1st line
-sed -i "1s/^/alias "$fileName"='cd \/var\/www\/"$fileName"\/'\n/" .bashrc
+sed -i "1s/^/alias "$fileName"='cd \/var\/www\/"$fileName"'\n/" .bashrc
 source .bashrc
 
 #config own domain directory
