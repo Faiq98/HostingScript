@@ -79,7 +79,8 @@ read -p 'Do you has your own domain ? (y/n): ' hasDomain
 if test $hasDomain = 'y' 
 then
 read -p 'Domain name: ' domainName
-read -p 'Index.php directory: \$fileName/' dir
+echo -n 'Index.php directory: $fileName/'
+read dir
 cat > /etc/apache2/sites-available/$fileName.conf <<-END
 <VirtualHost *:80>
     ServerAdmin webmaster@localhost
@@ -91,7 +92,8 @@ cat > /etc/apache2/sites-available/$fileName.conf <<-END
 </VirtualHost>
 END
 else
-read -p 'Index.php directory: \$fileName/' dir
+echo -n 'Index.php directory: $fileName/'
+read dir
 cat > /etc/apache2/sites-available/$fileName.conf <<-END
 <VirtualHost *:80>
     ServerAdmin webmaster@localhost
