@@ -75,7 +75,7 @@ sudo chown -R $USER:$USER /var/www/$fileName
 sudo chmod -R 777 /var/www/$fileName
 
 #create alias to your file dir in 1st line
-sed -i "1s/^/alias dir='cd \/var\/www\/"$fileName"\/'\n/" .bashrc
+sed -i "1s/^/alias "$fileName"='cd \/var\/www\/"$fileName"\/'\n/" .bashrc
 source .bashrc
 
 #config own domain directory
@@ -195,7 +195,7 @@ echo "Php Hosting Auto Installer"| lolcat
 echo "----------------------------------------"| lolcat
 echo "---------- Instruction -----------------"
 echo "Place your index.php file in /var/www/$fileName" | lolcat
-echo "Type [dir] to go to your file" | lolcat
+echo "Type [$fileName] to go to your file" | lolcat
 echo
 echo "To change document root path" | lolcat
 echo "sudo nano /etc/apache2/sites-available/$fileName.conf" | lolcat
