@@ -76,6 +76,7 @@ sudo chmod -R 777 /var/www/$fileName
 
 #create alias to your file dir in 1st line
 sed -i "1s/^/alias "$fileName"='cd \/var\/www\/"$fileName"'\n/" .bashrc
+cd
 source .bashrc
 
 #config own domain directory
