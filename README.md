@@ -19,4 +19,4 @@ wget https://raw.githubusercontent.com/Faiq98/HostingScript/master/JavaInstaller
 * PhpMyAdmin
 * SSL
 
-wget https://raw.githubusercontent.com/Faiq98/HostingScript/master/phpInstaller.sh&&chmod +x phpInstaller.sh&&./phpInstaller.sh
+wget https://raw.githubusercontent.com/Faiq98/HostingScript/master/PhpInstaller.sh&&chmod +x PhpInstaller.sh&&./PhpInstaller.sh
