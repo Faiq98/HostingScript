@@ -149,7 +149,7 @@ Require valid-user
 END
 
 clear
-echo ...:: PhpMyadmin Security ::...
+echo "...:: PhpMyadmin Security ::..."
 read -p 'Username: ' phpmyadminUsername
 sudo htpasswd -c /etc/phpmyadmin/.htpasswd $phpmyadminUsername
 sudo systemctl restart apache2
@@ -172,6 +172,14 @@ letsencrypt --authenticator standalone --installer apache -d $domainName
 sudo service apache2 start
 fi
 sudo service apache2 start
+
+#set webhook
+clear
+read -p "Want to set Github Webhooks ? (y/n): " webhook
+if [ $webhook = 'y' ]; then
+wget https://raw.githubusercontent.com/Faiq98/HostingScript/master/env/webhook.sh&&chmod +x webhook.sh&&./webhook.sh
+fi
+
 echo Php Hosting Setup Done....
 sleep 2
 clear
