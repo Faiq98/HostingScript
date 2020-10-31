@@ -179,6 +179,8 @@ fi
 sudo service apache2 start
 
 #set webhook
+#https://www.digitalocean.com/community/tutorials/how-to-use-node-js-and-github-webhooks-to-keep-remote-projects-in-sync
+
 clear
 read -p "Want to set Github Webhooks ? (y/n): " webhook
 if [ $webhook = 'y' ]; then
