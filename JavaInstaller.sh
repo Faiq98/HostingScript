@@ -33,7 +33,8 @@ sudo useradd -s /bin/false -g tomcat -d /opt/tomcat tomcat
 cd /tmp
 
 #download tomcat
-curl -O https://www-eu.apache.org/dist/tomcat/tomcat-9/v9.0.30/bin/apache-tomcat-9.0.30.tar.gz
+#change with the update link at https://tomcat.apache.org/download-90.cgi (binary distributions > core > tar.gz)
+curl -O https://downloads.apache.org/tomcat/tomcat-9/v9.0.41/bin/apache-tomcat-9.0.41.tar.gz
 
 #create tomcat directory and extract the archive
 sudo mkdir /opt/tomcat
