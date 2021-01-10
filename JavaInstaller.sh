@@ -168,14 +168,14 @@ gem install lolcat
 
 #setup ssl 
 # tutorial by https://bmtechtips.com/install-free-ssl-certificate-digitalocean-apache2.htm
-sudo apt-get update
-sudo add-apt-repository ppa:certbot/certbot
-sudo apt-get update
-sudo apt-get install python-certbot-apache
-sudo apachectl stop
-clear
-read -p 'Your Domain : ' domain
-letsencrypt --authenticator standalone --installer apache -d $domain
+# sudo apt-get update
+# sudo add-apt-repository ppa:certbot/certbot
+# sudo apt-get update
+# sudo apt-get install python-certbot-apache
+# sudo apachectl stop
+# clear
+# read -p 'Your Domain : ' domain
+# letsencrypt --authenticator standalone --installer apache -d $domain
 sudo service apache2 start
 echo Java Hosting Setup Done....
 sleep 2
@@ -185,12 +185,12 @@ echo "========================================"| lolcat
 echo "Java Hosting Auto Installer"| lolcat 
 echo "----------------------------------------"| lolcat
 echo "---------- TOMCAT ----------------------"
-echo "Tomcat Manager   : https://$domain/manager/html"| lolcat
+echo "Tomcat Manager   : https://$myip/manager/html"| lolcat
 echo "Username   : $tomcatUsername"| lolcat
 echo "Password   : $tomcatPassword"| lolcat
 echo "----------------------------------------"
 echo "---------- Phpmyadmin ------------------"
-echo "PhpMyadmin : http://$domain:99/phpmyadmin"| lolcat
+echo "PhpMyadmin : http://$myip:99/phpmyadmin"| lolcat
 echo "Username   : root"| lolcat
 echo "Password   : $mysqlPassword"| lolcat
 echo "----------------------------------------"
