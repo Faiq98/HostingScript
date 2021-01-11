@@ -1,6 +1,10 @@
 #!/bin/sh
 
-myip=`ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0' | head -n1`;
+#find private ip
+#myip=`ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0' | head -n1`;
+
+#find public ip
+myip=`curl ifconfig.me`
 
 echo
 
@@ -118,7 +122,7 @@ sleep 2
 clear
 CMD1="ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '$mysqlPassword';"
 CMD2="FLUSH PRIVILEGES;"
-CMD3="exit"
+CMD3="exit;"
 sudo mysql -Bse "$CMD1;$CMD2;$CMD3"
 
 #Check MySQL status
