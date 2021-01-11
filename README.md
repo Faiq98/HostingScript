@@ -7,7 +7,6 @@ Test on Ubuntu 18.04 (LTS) x64
 - [x] Free Tier GCP
 
 P.S: Please install swap for Free Tier GCP
-
 wget https://raw.githubusercontent.com/Faiq98/HostingScript/master/env/InstallSwap.sh&&chmod +x InstallSwap.sh&&./InstallSwap.sh
 
 ## Java Hosting
