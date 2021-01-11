@@ -3,6 +3,7 @@ Basic auto installation script for hosting your website.
 
 Test on Ubuntu 18.04 (LTS) x64
 - [x] Digital Ocean
+- [x] UpCloud
 - [x] Free Tier GCP
 
 ## Java Hosting
