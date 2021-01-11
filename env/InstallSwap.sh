@@ -8,4 +8,4 @@ sudo chmod 600 /swapfile
 sudo mkswap /swapfile  
 sudo swapon /swapfile
 
-echo /swapfile swap swap defaults 0 0 >> /etc/fstab
+sudo echo /swapfile swap swap defaults 0 0 >> /etc/fstab
