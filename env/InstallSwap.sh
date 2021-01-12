@@ -1,4 +1,5 @@
 #!/bin/sh
+#https://linuxize.com/post/create-a-linux-swap-file/
 
 sudo apt update && sudo apt upgrade -y
 
